@@ -1,0 +1,338 @@
+/* Attempt to load Inter, otherwise fallback to system sans-serif */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* General Styles */
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  background-color: #F4F4F5; /* Page background from "Esquema de Design" */
+  color: #18181B; /* Default text color from "Esquema de Design" */
+  width: 700px; /* As per "Tela Principal" */
+  height: 500px; /* As per "Tela Principal" */
+  overflow: hidden; /* Prevent scrollbars on body for fixed-size popup */
+}
+
+.container {
+  display: flex;
+  height: 100%; /* Use 100% of body height */
+}
+
+/* Sidebar */
+.sidebar {
+  background-color: #FAFAFA; /* Sidebar background from "Tela Principal" */
+  width: 220px; /* Adjusted width for better spacing with icons */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #E4E4E7; /* Border color from "Esquema de Design" */
+  box-sizing: border-box;
+}
+
+.sidebar .logo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px; /* Spacing based on "Tela Principal" */
+}
+
+.sidebar .logo img {
+  width: 28px; /* Adjusted from "Tela Principal" */
+  height: 28px;
+  margin-right: 10px;
+}
+
+.sidebar .logo h1 {
+  font-size: 16px; /* Adjusted from "Tela Principal" */
+  font-weight: 600; /* Semi-bold */
+  color: #18181B;
+}
+
+.sidebar nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar nav ul li a {
+  display: flex;
+  align-items: center;
+  padding: 10px 12px; /* Fine-tuned padding */
+  text-decoration: none;
+  color: #71717A; /* Secondary text color for inactive links */
+  border-radius: 6px;
+  margin-bottom: 8px; /* Spacing between nav items */
+  font-weight: 500; /* Medium weight */
+  font-size: 14px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.sidebar nav ul li a .nav-icon {
+  margin-right: 12px;
+  stroke: #71717A; /* Icon color for inactive links */
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  transition: stroke 0.2s ease;
+}
+
+.sidebar nav ul li a:hover {
+  background-color: #F0F0F0; /* Subtle hover for non-active items */
+}
+
+.sidebar nav ul li a.active {
+  background-color: #E4E4E7; /* Active link background (using a border color for subtlety) */
+  color: #18181B; /* Primary text color for active link */
+  font-weight: 600; /* Semi-bold for active link */
+}
+
+.sidebar nav ul li a.active .nav-icon {
+  stroke: #18181B; /* Icon color for active link */
+}
+
+.sidebar #novo-prompt-btn {
+  background-color: #09090B; /* Primary button background from "Esquema de Design" */
+  color: #FAFAFA; /* Button text color */
+  border: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: center;
+  font-weight: 600;
+  font-size: 14px;
+  margin-top: auto; /* Pushes button to the bottom */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+}
+.sidebar #novo-prompt-btn:hover {
+  background-color: #27272A; /* Darken button on hover */
+}
+
+.sidebar #novo-prompt-btn svg {
+  margin-right: 8px;
+}
+
+/* Content Area */
+.content {
+  flex-grow: 1;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto; /* Enable scrolling for content area */
+  box-sizing: border-box;
+  background-color: #F4F4F5; /* Match body background */
+}
+
+.content header {
+  margin-bottom: 20px; /* Space below search bar */
+}
+
+.content header .search-container {
+  position: relative;
+}
+
+.content header #search-bar {
+  width: 100%;
+  padding: 10px 15px 10px 40px; /* Left padding for search icon */
+  border: 1px solid #D4D4D8; /* Input border color from "Esquema de Design" */
+  border-radius: 6px;
+  font-size: 14px;
+  background-color: #FFFFFF; /* Input background */
+  box-sizing: border-box;
+  color: #18181B;
+}
+
+.content header #search-bar::placeholder {
+  color: #A1A1AA; /* Tertiary text color for placeholder */
+}
+
+.content header .search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  stroke: #A1A1AA; /* Icon color */
+  width: 16px;
+  height: 16px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px; /* Space below section title */
+}
+
+.content h2 { /* For titles like "Meus Prompts", "Criar Novo Prompt" */
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 0; /* Reset margin as .section-header handles it */
+  color: #18181B;
+}
+
+/* Prompt List Styling */
+.prompt-list {
+  border: 1px solid #E4E4E7; /* Border for the list container */
+  border-radius: 8px;
+  background-color: #FFFFFF; /* Card background for items */
+  overflow: hidden; /* Clip items to border-radius */
+}
+
+.prompt-item {
+  padding: 12px 15px;
+  border-bottom: 1px solid #E4E4E7;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.2s ease;
+}
+
+.prompt-item:hover {
+  background-color: #FAFAFA; /* Slight hover effect on prompt items */
+}
+
+.prompt-item:last-child {
+  border-bottom: none;
+}
+
+.prompt-item > div:first-child { /* Container for title and folder */
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  margin-right: 10px;
+  overflow: hidden; /* Prevent text overflow issues */
+}
+
+.prompt-item-title {
+  font-weight: 500;
+  color: #27272A; /* Slightly darker than secondary text */
+  margin-right: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+}
+
+.prompt-item-folder {
+  font-size: 12px;
+  color: #A1A1AA; /* Tertiary text color */
+  white-space: nowrap;
+  flex-shrink: 0; /* Prevent shrinking if title is long */
+  background-color: #F4F4F5; /* Subtle background for folder tag */
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.prompt-item-actions button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: 8px; /* Spacing between action icons */
+  color: #71717A; /* Icon color */
+  padding: 4px; /* Make clickable area slightly larger */
+  border-radius: 4px;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.prompt-item-actions button:hover {
+  color: #18181B; /* Darker icon on hover */
+  background-color: #E4E4E7; /* Subtle background on hover */
+}
+.prompt-item-actions button svg {
+  display: block; /* Helps with alignment and sizing */
+}
+
+
+/* Novo Prompt Form / Edit Form */
+#novo-prompt-form-section {
+  background-color: #FFFFFF;
+  padding: 24px; /* More padding for form section */
+  border-radius: 8px;
+  border: 1px solid #E4E4E7; /* Consistent with prompt-list border */
+}
+
+#novo-prompt-form div {
+  margin-bottom: 16px; /* Space between form fields */
+}
+
+#novo-prompt-form label {
+  display: block;
+  margin-bottom: 6px; /* Space between label and input */
+  font-weight: 500;
+  font-size: 14px;
+  color: #3F3F46; /* Darker gray for labels */
+}
+
+#novo-prompt-form input[type="text"],
+#novo-prompt-form textarea {
+  width: 100%; /* Full width */
+  padding: 10px 12px; /* Comfortable padding */
+  border: 1px solid #D4D4D8; /* Standard input border */
+  border-radius: 6px;
+  font-size: 14px;
+  box-sizing: border-box; /* Include padding and border in width */
+  color: #18181B;
+  transition: border-color 0.2s ease;
+}
+#novo-prompt-form input[type="text"]:focus,
+#novo-prompt-form textarea:focus {
+  border-color: #09090B; /* Highlight focus with primary dark color */
+  outline: none;
+}
+
+
+#novo-prompt-form textarea {
+  resize: vertical;
+  min-height: 80px; /* Minimum height for textarea */
+}
+
+#novo-prompt-form .form-actions {
+  display: flex;
+  justify-content: flex-end; /* Align buttons to the right */
+  margin-top: 24px; /* More space before action buttons */
+}
+
+#novo-prompt-form button[type="submit"] {
+  background-color: #09090B; /* Primary action button */
+  color: #FAFAFA;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+}
+#novo-prompt-form button[type="submit"]:hover {
+  background-color: #27272A;
+}
+
+#novo-prompt-form button[type="button"] { /* Cancel button */
+  background-color: #F4F4F5; /* Secondary button style */
+  color: #18181B;
+  border: 1px solid #E4E4E7; /* Light border */
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 14px;
+  margin-left: 10px; /* Space from submit button */
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+#novo-prompt-form button[type="button"]:hover {
+  background-color: #E4E4E7;
+  border-color: #D4D4D8;
+}
+
+
+/* Hidden class */
+.hidden {
+  display: none !important;
+}
+
+/* Utility classes (can be expanded if needed) */
+.text-primary { color: #18181B; }
+.text-secondary { color: #71717A; }
+.bg-primary { background-color: #09090B; }
+.bg-secondary { background-color: #F4F4F5; }
+.border-default { border: 1px solid #E4E4E7; }
